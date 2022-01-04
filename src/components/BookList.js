@@ -1,20 +1,24 @@
-import { useContext } from "react";
+import React,{ useContext } from 'react';
 import { BookContext } from "../context/BookContext";
+import BookDetails from "./BookDetails";
 
 
 
 
 
 const BookList = () => {
-    const {books}= useContext(BookContext)
-   
+    const { books } = useContext(BookContext);
     return books.length ?(
+        
         <div className="book-list">
-        <ul>
-          {books.map((book)=><li key={book.id}>{book.title}</li> )}
-        </ul>
-      </div>
-    ):(
+          <ul>
+               {books.map(book => {
+                    return ( <li key={book.id}>< BookDetails book={book}  /></li>);
+                })}
+          </ul>
+        </div>
+
+    ) : (
        <div className="empty"> your Database is Empty..... No Book to Read</div>
     )
 }
